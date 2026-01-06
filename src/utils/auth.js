@@ -34,3 +34,18 @@ export const hasRole = (role) => {
   return user && user.role === role
 }
 
+// Google login helper - stores user and assigns role based on email
+export const loginWithGoogle = (email) => {
+  // Assign role: admin if email contains "admin", student otherwise
+  const role = email.toLowerCase().includes('admin') ? 'Admin' : 'Student'
+  
+  const user = {
+    email,
+    role,
+    isAuthenticated: true
+  }
+  
+  localStorage.setItem('user', JSON.stringify(user))
+  return user
+}
+
